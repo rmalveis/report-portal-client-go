@@ -1,4 +1,4 @@
-package report_portal_client_go
+package client
 
 import (
 	"bytes"

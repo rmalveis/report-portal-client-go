@@ -1,4 +1,4 @@
-package report_portal_client_go
+package client
 
 var WidgetTypes = map[string]string{
 	// TODO: allow types below to be managed by  this client

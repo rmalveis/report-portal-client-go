@@ -1,4 +1,4 @@
-package report_portal_client_go
+package client
 
 //TODO: Need to refactor these methods. Standardize the ap exported objects.
 import (

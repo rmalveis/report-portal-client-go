@@ -1,4 +1,4 @@
-module report-portal-provider
+module github.com/rmalveis/report-portal-client-go
 
 go 1.16
 
