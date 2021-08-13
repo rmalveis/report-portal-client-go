@@ -98,6 +98,9 @@ func (c *Client) UpdateDashboard(updateDashboardRequest *UpdateDashboardRequest)
 		"PUT",
 		fmt.Sprintf("%s/api/v1/%s/dashboard/%d", c.HostUrl, url.PathEscape(updateDashboardRequest.ProjectName), updateDashboardRequest.DashboardId),
 		bytes.NewReader(reqBody))
+	if err != nil {
+		return err
+	}
 	req.Header.Add("Content-Type", "application/json")
 
 	_, err = c.doRequest(req)
