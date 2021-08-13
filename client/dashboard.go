@@ -89,10 +89,15 @@ func (c *Client) CreateDashboard(d CreateDashboardRequest) (*int, error) {
 }
 
 func (c *Client) UpdateDashboard(updateDashboardRequest *UpdateDashboardRequest) error {
+	reqBody, err := json.Marshal(*updateDashboardRequest)
+	if err != nil {
+		return err
+	}
+
 	req, err := http.NewRequest(
 		"PUT",
 		fmt.Sprintf("%s/api/v1/%s/dashboard/%d", c.HostUrl, url.PathEscape(updateDashboardRequest.ProjectName), updateDashboardRequest.DashboardId),
-		nil)
+		bytes.NewReader(reqBody))
 	req.Header.Add("Content-Type", "application/json")
 
 	_, err = c.doRequest(req)
@@ -157,6 +162,10 @@ func (c *Client) AddWidgetIntoDashboard(projectName string, dashboardId *int, wi
 		"PUT",
 		fmt.Sprintf("%s/api/v1/%s/dashboard/%d/add", c.HostUrl, url.PathEscape(projectName), *dashboardId),
 		bytes.NewReader(reqBody))
+	if err != nil {
+		return err
+	}
+	req.Header.Add("Content-Type", "application/json")
 
 	_, err = c.doRequest(req)
 
